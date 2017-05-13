@@ -1,4 +1,5 @@
 #include "GeneralDraw.h"
+
 void GeneralDraw::SetDrawColour(ECOLOUR _colour)   
 {
 	switch (_colour)
@@ -60,49 +61,58 @@ void GeneralDraw::SetDrawColour(ECOLOUR _colour)
 
 void GeneralDraw::DrawMapOutline()
 {
-	char a = 186;//vertical lines
-	char b = 205;//horizontal lines
+	char a = 186;//vertical lines ascii
+	char b = 205;//horizontal lines ascii
 
 	//choose colour here
 	SetDrawColour(col_white_black);
 
-	GoToXY(3, 1);
-	for (int i = 0; i < 74; i++)
-	{
-		std::cout << b;
-	}
-	GoToXY(2, 2);
-	for (int i = 0; i < 45; i++)
-	{
-		GoToXY(2, 2 + i);
-		std::cout << a;
-	}
-	GoToXY(87, 2);
-	for (int i = 0; i < 45; i++)
-	{
-		GoToXY(77, 2+i);
-		std::cout << a;
-	}
-	GoToXY(3, 46);
-	for (int i = 0; i < 74; i++)
+	//Draw TOP LINE
+	GoToXY(arenaStartX+1, arenaStartY);
+	for (int i = 0; i < arenaStartX + arenaWidth - 2; i++)
 	{
 		std::cout << b;
 	}
 
-	GoToXY(2, 1);
+	//Draw LEFT LINE
+	for (int i = 0; i < arenaStartY + arenaHeight - 2; i++)
+	{
+		GoToXY(arenaStartX, arenaStartY + 1 + i);
+		std::cout << a;
+	}
+
+	//Draw RIGHT LINE
+	for (int i = 0; i < arenaStartY + arenaHeight - 2; i++)
+	{
+		GoToXY(arenaStartX+arenaWidth-1, arenaStartY+1+i);
+		std::cout << a;
+	}
+
+	//Draw BOTTOM LINE
+	GoToXY(arenaStartX+1, arenaStartY+arenaHeight-1);
+	for (int i = 0; i < arenaStartX + arenaWidth - 2; i++)
+	{
+		std::cout << b;
+	}
+
+	//TOP-LEFT CORNER
+	GoToXY(arenaStartX, arenaStartY);
 	a = 201;
 	std::cout << a;
 
+	//TOP-RIGHT
 	a = 187;
-	GoToXY(77, 1);
+	GoToXY(arenaStartX + arenaWidth-1, arenaStartY);
 	std::cout << a;
 
+	//BOTTOM-LEFT
 	a = 200;
-	GoToXY(2, 46);
+	GoToXY(arenaStartX, arenaStartY+arenaHeight-1);
 	std::cout << a;
 
+	//BOTTOM-RIGHT
 	a = 188;
-	GoToXY(77, 46);
+	GoToXY(arenaStartX+arenaWidth-1, arenaStartY+arenaHeight-1);
 	std::cout << a;
 }
 
@@ -114,14 +124,14 @@ void GeneralDraw::GoToXY(int _iX, int _iY)
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), point);
 }
 
-int GeneralDraw::GetXOffset()
+int GeneralDraw::xOffset()
 {
-	return 3;
+	return iMapXOffset;
 }
 
-int GeneralDraw::GetYOffset()
+int GeneralDraw::yOffset()
 {
-	return 2;
+	return iMapYOffset;
 }
 
 void GeneralDraw::ClearArena()      
@@ -130,7 +140,7 @@ void GeneralDraw::ClearArena()
 	
 	for (int i = 0; i < 44; i++)
 	{
-		GoToXY(GetXOffset(), GetYOffset() + i);
+		GoToXY(xOffset(), yOffset() + i);
 		for (int j = 0; j < 74;j++)
 		{
 			std::cout << " ";
@@ -223,3 +233,7 @@ void GeneralDraw::DrawRectangle(int _iX, int _iY, int _iWidth, int _iHeight)
 	GoToXY(_iX + _iWidth, _iY + _iHeight);
 	std::cout << a;
 }
+
+int GeneralDraw::getArenaWidth() { return arenaWidth; }
+
+int GeneralDraw::getArenaHeight() { return arenaHeight; }

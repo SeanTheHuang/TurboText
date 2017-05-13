@@ -1,15 +1,7 @@
 #ifndef  _PLAYER_TURBO
 #define  _PLAYER_TURBO
 
-enum Color
-{
-	RED = 0,
-	PINK = 1,
-	ORANGE = 2,
-	BLUE = 4,
-	TEAL = 5,
-	GREEN = 6
-};
+#include "GeneralDraw.h"
 
 enum Direction
 {
@@ -22,6 +14,14 @@ enum Direction
 class PlayerTurbo
 {
 public:
+	PlayerTurbo(
+		int startX, int startY, Direction startDir,
+		ECOLOUR playerCol, ECOLOUR trailCol,
+		ECOLOUR upgradedCol, int speed
+	);
+
+	PlayerTurbo();
+
 	void SetSpeed(int _i);
 	int GetSpeed();
 
@@ -37,25 +37,29 @@ public:
 
 	void SetDirection(Direction _dDir);
 
-	void SetPlayerColor(Color _cCol);
+	void SetPlayerColor(ECOLOUR _cCol);
 
-	void SetTrailColor(Color _cCol);
+	void SetTrailColor(ECOLOUR _cCol);
 
-	void SetPlayerUpgradeColor(Color _cCol);
+	void SetPlayerUpgradeColor(ECOLOUR _cCol);
+
+	void movePlayerTurbo();
+
+	void drawPlayerTurbo();
 
 private:
-	int iSpeed = 1;
+	int iSpeed;
 	int iTrailWidth;
 	bool bCanTouchOwnTail;
 	int iPlayerXCoord;
 	int iPlayerYCoord;
 
 	Direction dDirection;
-	Color cPlayerColor;
-	Color cTrailColor;
-	Color cPlayerWithUpgradeColor;
+	ECOLOUR cPlayerColor;
+	ECOLOUR cTrailColor;
+	ECOLOUR cPlayerWithUpgradeColor;
 
-
+	char getPlayerSymbol();
 };
 
 #endif
