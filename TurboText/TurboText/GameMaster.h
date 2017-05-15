@@ -17,8 +17,8 @@ private:
 	PlayerTurbo player_2;
 
 	char GameBoard[73][43];
-	Direction p1Input(Direction _oldDir);
-	Direction p2Input(Direction _oldDir);
+	void processUserInputs();
+	
 };
 
 #endif

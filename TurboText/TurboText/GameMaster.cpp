@@ -52,96 +52,68 @@ void GameMaster::PlayGame()
 			break;
 		}
 
-		player_2.SetDirection(p2Input(player_2.GetDirection()));
-
-		player_1.SetDirection(p1Input(player_1.GetDirection()));
-		player_1.SetDirection(p2Input(player_1.GetDirection()));
+		processUserInputs();
 		
 		player_1.movePlayerTurbo();
 		player_2.movePlayerTurbo();
 
 		player_1.drawPlayerTurbo();
 		player_2.drawPlayerTurbo();
-		Sleep(100);
+		Sleep(1000/5);
 	}
 }
 
-Direction GameMaster::p1Input(Direction _oldDir)
+void GameMaster::processUserInputs()
 {
-	if (kbhit() == true)
+	while (kbhit())
 	{
 		int key = _getch();
 		switch (key)
 		{
-		case 119:
+		case 119://w
 		{
-			return UP;
+			player_1.SetDirection(UP);
 			break;
 		}
-		case 97:
+		case 97://a
 		{
-			return LEFT;
+			player_1.SetDirection(LEFT);
 			break;
 		}
-		case 115:
+		case 115://s
 		{
-			return DOWN;
+			player_1.SetDirection(DOWN);
 			break;
 		}
-		case 100:
+		case 100://d
 		{
-			return RIGHT;
+			player_1.SetDirection(RIGHT);
 			break;
 		}
-		default:
+		case 105://i
 		{
-			return _oldDir;
+			player_2.SetDirection(UP);
 			break;
 		}
-		}
-	}
-	else
-	{
-		return _oldDir;
-	}
-}
-
-Direction GameMaster::p2Input(Direction _oldDir)
-{
-	if (kbhit() == true)
-	{
-		int key = _getch();
-		switch (key)
+		case 106://j
 		{
-		case 105:
-		{
-			return UP;
+			player_2.SetDirection(LEFT);
 			break;
 		}
-		case 106:
+		case 107://k
 		{
-			return LEFT;
+			player_2.SetDirection(DOWN);
 			break;
 		}
-		case 107:
+		case 108://l
 		{
-			return DOWN;
-			break;
-		}
-		case 108:
-		{
-			return RIGHT;
+			player_2.SetDirection(RIGHT);
 			break;
 		}
 		default:
 		{
-			return _oldDir;
 			break;
 		}
 		}
-	}
-	else
-	{
-		return _oldDir;
 	}
 }
