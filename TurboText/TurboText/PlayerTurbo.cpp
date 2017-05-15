@@ -77,6 +77,11 @@ void PlayerTurbo::SetDirection(Direction _dDir)
 	dDirection = _dDir;
 };
 
+Direction PlayerTurbo::GetDirection()
+{
+	return dDirection;
+}
+
 void PlayerTurbo::SetPlayerColor(ECOLOUR _cCol)
 {
 	cPlayerColor = _cCol;

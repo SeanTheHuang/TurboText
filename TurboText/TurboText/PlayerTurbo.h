@@ -37,6 +37,8 @@ public:
 
 	void SetDirection(Direction _dDir);
 
+	Direction GetDirection();
+
 	void SetPlayerColor(ECOLOUR _cCol);
 
 	void SetTrailColor(ECOLOUR _cCol);
