@@ -138,7 +138,7 @@ void GameMaster::MainMenu()
 	int iy = 24;
 	int keyp1;
 	int keyp2;
-	bool gotime = false; 
+	bool confirm = false; 
 	while (true)
 	{
 		switch (iMenuOption)
@@ -159,7 +159,7 @@ void GameMaster::MainMenu()
 			iy = iy;
 		}
 		
-		for (int i = 0;i < 7; i++)
+		for (int i = 0;i < 7; i++)//draws black where menu items are
 		{
 			GeneralDraw::GoToXY(35, 18 + (2 * i));
 			std::cout << "           ";
@@ -206,6 +206,93 @@ void GameMaster::MainMenu()
 		}
 		std::cout << "QUIT";
 
+
+		if (confirm == true)
+		{
+			switch (iMenuOption)
+			{
+			case 0:
+				break;
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+			{
+				GeneralDraw::ClearRectangle(20, 14, 40, 20);
+				GeneralDraw::DrawRectangle(20, 14, 40, 20);
+				confirm = false;
+				int choose = 1;
+				bool confirm2 = false;
+				int k;
+				
+				while (true)
+				{
+					GeneralDraw::GoToXY(37, 24);
+					if (choose == 0)
+					{
+						GeneralDraw::SetDrawColour(col_yellow_black);
+						if (confirm2 == true)
+						{
+							exit(EXIT_SUCCESS);
+						}
+					}
+					else
+					{
+						GeneralDraw::SetDrawColour(col_white_black);
+					}
+					std::cout << "YES  ";
+
+					if (choose == 1)
+					{
+						GeneralDraw::SetDrawColour(col_yellow_black);
+						if (confirm2 == true)
+						{
+							break;
+						}
+					}
+					else
+					{
+						GeneralDraw::SetDrawColour(col_white_black);
+					}
+					std::cout << "NO";
+
+					k = _getch();
+					//if (k != 13)
+					//{
+						k = _getch();
+					//}
+					if (k == 75)
+					{
+						if (choose != 0)
+						{
+							choose = 0;
+						}
+					}
+					else if (k == 77)
+					{
+						if (choose != 1)
+						{
+							choose = 1;
+						}
+					}
+					else if (k == 13)
+					{
+						confirm2 = true;
+					}
+					else
+					{
+						continue;
+					}
+				}
+
+				break;
+			}
+			default:
+				break;
+			}
+		}
+
 		keyp1 = _getch();
 		if (keyp1 == 13)
 		{
@@ -220,7 +307,7 @@ void GameMaster::MainMenu()
 		{
 		case 13://enter
 		{
-			gotime = true;
+			confirm = true;
 			break;
 		}
 		case 72: //up
