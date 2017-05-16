@@ -10,6 +10,7 @@ public:
 	GameMaster();
 	void InitializeGame();
 	void PlayGame();
+	void MainMenu();
 
 private:
 	//[Play Game] members

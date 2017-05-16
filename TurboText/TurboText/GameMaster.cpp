@@ -33,7 +33,8 @@ void GameMaster::InitializeGame()
 	player_1.drawPlayerTurbo();
 	player_2.drawPlayerTurbo();
 
-	PlayGame();
+	MainMenu();
+	//PlayGame();
 
 }
 
@@ -116,4 +117,139 @@ void GameMaster::processUserInputs()
 		}
 		}
 	}
+}
+
+void GameMaster::MainMenu()
+{
+	GeneralDraw::DrawMapOutline();
+	GeneralDraw::SetDrawColour(col_yellow_black);
+	GeneralDraw::GoToXY(3, 3);
+	std::cout << "            ______           __             ______          __         ";
+	GeneralDraw::GoToXY(3, 4);
+	std::cout << "           /_  __/_  _______/ /_  ____     /_  __/__  _  __/ /_        ";
+	GeneralDraw::GoToXY(3, 5);
+	std::cout << " ______     / / / / / / ___/ __ \\/ __ \\     / / / _ \\| |/_/ __/  ______";
+	GeneralDraw::GoToXY(3, 6);
+	std::cout << "/_____/    / / / /_/ / /  / /_/ / /_/ /    / / /  __/>  </ /_   /_____/";
+	GeneralDraw::GoToXY(3, 7);
+	std::cout << "          /_/  \\__,_/_/  /_.___/\\____/    /_/  \\___/_/|_|\\__/          ";
+
+	int iMenuOption = 0;
+	int iy = 24;
+	int keyp1;
+	int keyp2;
+	bool gotime = false; 
+	while (true)
+	{
+		switch (iMenuOption)
+		{
+		case 0:
+			iy = 24;
+			break;
+		case 1:
+			iy = 22;
+			break;
+		case 2:
+			iy = 20;
+			break;
+		case 3:
+			iy = 18;
+			break;
+		default:
+			iy = iy;
+		}
+		
+		for (int i = 0;i < 7; i++)
+		{
+			GeneralDraw::GoToXY(35, 18 + (2 * i));
+			std::cout << "           ";
+		}
+		
+		GeneralDraw::GoToXY(36, iy);
+		if (iMenuOption == 0)
+		{
+			GeneralDraw::SetDrawColour(col_yellow_black);
+		}
+		else
+		{
+			GeneralDraw::SetDrawColour(col_white_black);
+		}
+		std::cout << "PLAY GAME";
+		GeneralDraw::GoToXY(35, iy + 2);
+		if (iMenuOption == 1)
+		{
+			GeneralDraw::SetDrawColour(col_yellow_black);
+		}
+		else
+		{
+			GeneralDraw::SetDrawColour(col_white_black);
+		}
+		std::cout << "HOW TO PLAY";
+		GeneralDraw::GoToXY(37, iy + 4);
+		if (iMenuOption == 2)
+		{
+			GeneralDraw::SetDrawColour(col_yellow_black);
+		}
+		else
+		{
+			GeneralDraw::SetDrawColour(col_white_black);
+		}
+		std::cout << "CREDITS";
+		GeneralDraw::GoToXY(38, iy + 6);
+		if (iMenuOption == 3)
+		{
+			GeneralDraw::SetDrawColour(col_yellow_black);
+		}
+		else
+		{
+			GeneralDraw::SetDrawColour(col_white_black);
+		}
+		std::cout << "QUIT";
+
+		keyp1 = _getch();
+		if (keyp1 == 13)
+		{
+			keyp2 = 13;
+		}
+		else
+		{
+			keyp2 = _getch();
+		}
+
+		switch (keyp2)
+		{
+		case 13://enter
+		{
+			gotime = true;
+			break;
+		}
+		case 72: //up
+		{
+			if (iMenuOption != 0)
+			{
+				iMenuOption--;
+			}
+			break;
+		}
+		case 80://down
+		{
+			if (iMenuOption != 3)
+			{
+				iMenuOption++;
+			}
+			break;
+		}
+		default:
+		{
+			break;
+		}
+		}
+		
+	}
+
+
+
+
+	
+
 }
