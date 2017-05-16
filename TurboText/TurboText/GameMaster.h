@@ -3,6 +3,7 @@
 
 #include "PlayerTurbo.h"
 #include "GeneralDraw.h"
+#include "GameInfo.h"
 #include <conio.h>
 class GameMaster
 {

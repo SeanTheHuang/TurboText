@@ -3,6 +3,7 @@
 
 
 #include "GeneralDraw.h"
+#include <string>
 
 class GameInfo
 {
@@ -21,7 +22,7 @@ public:
 	static const int startX_2 = 65;
 	static const int startY_2 = 23;
 
-	
+	static const std::string sCredits;
 };
 
 

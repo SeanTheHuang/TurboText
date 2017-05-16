@@ -1,4 +1,5 @@
 #include "GameMaster.h"
+#include <string>
 
 int main()
 {
