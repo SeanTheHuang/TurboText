@@ -135,10 +135,10 @@ void GameMaster::MainMenu()
 	std::cout << "          /_/  \\__,_/_/  /_.___/\\____/    /_/  \\___/_/|_|\\__/          ";
 
 	int iMenuOption = 0;
+	int iLastMenuOption = 1;
 	int iy = 24;
-	int keyp1;
-	int keyp2;
-	bool confirm = false; 
+	bool confirm = false;
+
 	while (true)
 	{
 		switch (iMenuOption)
@@ -158,172 +158,82 @@ void GameMaster::MainMenu()
 		default:
 			iy = iy;
 		}
-		
-		for (int i = 0;i < 7; i++)//draws black where menu items are
-		{
-			GeneralDraw::GoToXY(35, 18 + (2 * i));
-			std::cout << "           ";
-		}
-		
-		GeneralDraw::GoToXY(36, iy);
-		if (iMenuOption == 0)
-		{
-			GeneralDraw::SetDrawColour(col_yellow_black);
-		}
-		else
-		{
-			GeneralDraw::SetDrawColour(col_white_black);
-		}
-		std::cout << "PLAY GAME";
-		GeneralDraw::GoToXY(35, iy + 2);
-		if (iMenuOption == 1)
-		{
-			GeneralDraw::SetDrawColour(col_yellow_black);
-		}
-		else
-		{
-			GeneralDraw::SetDrawColour(col_white_black);
-		}
-		std::cout << "HOW TO PLAY";
-		GeneralDraw::GoToXY(37, iy + 4);
-		if (iMenuOption == 2)
-		{
-			GeneralDraw::SetDrawColour(col_yellow_black);
-		}
-		else
-		{
-			GeneralDraw::SetDrawColour(col_white_black);
-		}
-		std::cout << "CREDITS";
-		GeneralDraw::GoToXY(38, iy + 6);
-		if (iMenuOption == 3)
-		{
-			GeneralDraw::SetDrawColour(col_yellow_black);
-		}
-		else
-		{
-			GeneralDraw::SetDrawColour(col_white_black);
-		}
-		std::cout << "QUIT";
 
-
-		if (confirm == true)
+		if (iMenuOption != iLastMenuOption)
 		{
-			switch (iMenuOption)
+			for (int i = 0; i < 7; i++)//draws black where menu items are
 			{
-			case 0:
-				break;
-			case 1:
-				break;
-			case 2:
-				break;
-			case 3:
+				GeneralDraw::GoToXY(35, 18 + (2 * i));
+				std::cout << "           ";
+			}
+
+			GeneralDraw::GoToXY(36, iy);
+			if (iMenuOption == 0)
 			{
-				GeneralDraw::ClearRectangle(20, 14, 40, 20);
-				GeneralDraw::DrawRectangle(20, 14, 40, 20);
-				confirm = false;
-				int choose = 1;
-				bool confirm2 = false;
-				int k;
-				
-				while (true)
-				{
-					GeneralDraw::GoToXY(37, 24);
-					if (choose == 0)
-					{
-						GeneralDraw::SetDrawColour(col_yellow_black);
-						if (confirm2 == true)
-						{
-							exit(EXIT_SUCCESS);
-						}
-					}
-					else
-					{
-						GeneralDraw::SetDrawColour(col_white_black);
-					}
-					std::cout << "YES  ";
-
-					if (choose == 1)
-					{
-						GeneralDraw::SetDrawColour(col_yellow_black);
-						if (confirm2 == true)
-						{
-							break;
-						}
-					}
-					else
-					{
-						GeneralDraw::SetDrawColour(col_white_black);
-					}
-					std::cout << "NO";
-
-					k = _getch();
-					//if (k != 13)
-					//{
-						k = _getch();
-					//}
-					if (k == 75)
-					{
-						if (choose != 0)
-						{
-							choose = 0;
-						}
-					}
-					else if (k == 77)
-					{
-						if (choose != 1)
-						{
-							choose = 1;
-						}
-					}
-					else if (k == 13)
-					{
-						confirm2 = true;
-					}
-					else
-					{
-						continue;
-					}
-				}
-
-				break;
+				GeneralDraw::SetDrawColour(col_yellow_black);
 			}
-			default:
-				break;
+			else
+			{
+				GeneralDraw::SetDrawColour(col_white_black);
 			}
+			std::cout << "PLAY GAME";
+
+			GeneralDraw::GoToXY(35, iy + 2);
+			if (iMenuOption == 1)
+			{
+				GeneralDraw::SetDrawColour(col_yellow_black);
+			}
+			else
+			{
+				GeneralDraw::SetDrawColour(col_white_black);
+			}
+			std::cout << "HOW TO PLAY";
+
+			GeneralDraw::GoToXY(37, iy + 4);
+			if (iMenuOption == 2)
+			{
+				GeneralDraw::SetDrawColour(col_yellow_black);
+			}
+			else
+			{
+				GeneralDraw::SetDrawColour(col_white_black);
+			}
+			std::cout << "CREDITS";
+
+			GeneralDraw::GoToXY(38, iy + 6);
+			if (iMenuOption == 3)
+			{
+				GeneralDraw::SetDrawColour(col_yellow_black);
+			}
+			else
+			{
+				GeneralDraw::SetDrawColour(col_white_black);
+			}
+			std::cout << "QUIT";
 		}
 
-		keyp1 = _getch();
-		if (keyp1 == 13)
+		iLastMenuOption = iMenuOption;
+		switch (MenuInputs())
 		{
-			keyp2 = 13;
-		}
-		else
-		{
-			keyp2 = _getch();
-		}
-
-		switch (keyp2)
-		{
-		case 13://enter
-		{
-			confirm = true;
-			break;
-		}
-		case 72: //up
+		case KUP:
 		{
 			if (iMenuOption != 0)
 			{
-				iMenuOption--;
+				iMenuOption -= 1;
 			}
 			break;
 		}
-		case 80://down
+		case KDOWN:
 		{
 			if (iMenuOption != 3)
 			{
-				iMenuOption++;
+				iMenuOption += 1;
 			}
+			break;
+		}
+		case KENTER:
+		{
+			confirm = true;
 			break;
 		}
 		default:
@@ -331,12 +241,193 @@ void GameMaster::MainMenu()
 			break;
 		}
 		}
-		
+
+		if (confirm == true)
+		{
+			switch (iMenuOption)
+			{
+			case 0:
+			{
+				break;
+			}
+			case 1:
+			{
+				break;
+			}
+			case 2:
+			{
+				CreditMenu();
+				iMenuOption = 0;
+				break;
+			}
+			case 3:
+			{
+				QuitMenu();
+				iMenuOption = 0;
+				break;
+			}
+			default:
+				break;
+			}
+			confirm = false;
+			
+			continue;
+		}
+	}
+}
+
+KEYS GameMaster::MenuInputs()
+{
+	int keyp1 = _getch();
+	int keyp2;
+	if (keyp1 == 13)
+	{
+		keyp2 = 13;
+	}
+	else
+	{
+		keyp2 = _getch();
 	}
 
+	switch (keyp2)
+	{
+	case 13://enter
+	{
+		return KENTER;
+		break;
+	}
+	case 72: //up
+	{
+		return KUP;
+		break;
+	}
+	case 80://down
+	{
+		return KDOWN;
+		break;
+	}
+	case 75:
+	{
+		return KLEFT;
+		break;
+	}
+	case 77:
+	{
+		return KRIGHT;
+		break;
+	}
+	default:
+	{
+		break;
+	}
+	}
+}
 
-
-
+void GameMaster::QuitMenu()
+{
+	GeneralDraw::SetDrawColour(col_white_black);
+	GeneralDraw::ClearRectangle(20, 14, 40, 20);
+	GeneralDraw::DrawRectangle(20, 14, 40, 20);
 	
+	GeneralDraw::SetDrawColour(col_yellow_black);
+	GeneralDraw::GoToXY(25, 20);
+	std::cout << "Are you sure you want to quit?";
+	bool confirm = false;
+	int iMenuOption = 1;
+	
+	while (true)
+	{
+		GeneralDraw::GoToXY(34, 28);
+		if (iMenuOption == 0)
+		{
+			GeneralDraw::SetDrawColour(col_red_black);
+			if (confirm == true)
+			{
+				exit(EXIT_SUCCESS);
+			}
+		}
+		else
+		{
+			GeneralDraw::SetDrawColour(col_white_black);
+		}
+		std::cout << "QUIT   ";
 
+		if (iMenuOption == 1)
+		{
+			GeneralDraw::SetDrawColour(col_green_black);
+			if (confirm == true)
+			{
+				GeneralDraw::ClearRectangle(20, 14, 40, 20);
+				return;
+			}
+		}
+		else
+		{
+			GeneralDraw::SetDrawColour(col_white_black);
+		}
+		std::cout << "RETURN";
+
+		switch (MenuInputs())
+		{
+		case KLEFT:
+		{
+			if (iMenuOption == 0)
+			{
+				iMenuOption = 1;
+			}
+			else
+			{
+				iMenuOption = 0;
+			}
+			break;
+		}
+		case KRIGHT:
+		{
+			if (iMenuOption == 0)
+			{
+				iMenuOption = 1;
+			}
+			else
+			{
+				iMenuOption = 0;
+			}
+			break;
+		}
+		case KENTER:
+		{
+			confirm = true;
+		}
+		default:
+		{
+			//continue;
+			break;
+		}
+		}
+	}
+}
+
+void GameMaster::CreditMenu()
+{
+	bool leave = false;
+	GeneralDraw::SetDrawColour(col_white_black);
+	GeneralDraw::ClearRectangle(6, 14, 64, 12);
+	GeneralDraw::DrawRectangle(6, 14, 64, 12);
+
+	GeneralDraw::GoToXY(36, 16);
+	GeneralDraw::SetDrawColour(col_yellow_black);
+	std::cout << "Credits";
+
+	GeneralDraw::SetDrawColour(col_white_black);
+	GeneralDraw::GoToXY(14, 20);
+	std::cout << GameInfo::sCredits;
+
+	GeneralDraw::SetDrawColour(col_yellow_black);
+	GeneralDraw::GoToXY(28, 24);
+	std::cout << "Press ENTER to return";
+	while (MenuInputs() != KENTER)
+	{
+
+	}
+	GeneralDraw::ClearRectangle(6, 14, 64, 12);
+	return;
 }

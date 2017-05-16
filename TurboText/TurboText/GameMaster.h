@@ -5,6 +5,16 @@
 #include "GeneralDraw.h"
 #include "GameInfo.h"
 #include <conio.h>
+
+enum KEYS
+{
+	KUP = 0,
+	KLEFT,
+	KRIGHT,
+	KDOWN,
+	KENTER
+};
+
 class GameMaster
 {
 public:
@@ -12,6 +22,9 @@ public:
 	void InitializeGame();
 	void PlayGame();
 	void MainMenu();
+	void QuitMenu();
+	void HTPMenu();
+	void CreditMenu();
 
 private:
 	//[Play Game] members
@@ -20,6 +33,7 @@ private:
 
 	char GameBoard[73][43];
 	void processUserInputs();
+	KEYS MenuInputs();
 	
 };
 
