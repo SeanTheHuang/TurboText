@@ -435,48 +435,57 @@ void GameMaster::MainMenu()
 
 KEYS GameMaster::MenuInputs()
 {
-	int keyp1 = _getch();
-	int keyp2;
-	if (keyp1 == 13)
+	while (true)
 	{
-		keyp2 = 13;
-	}
-	else
-	{
-		keyp2 = _getch();
-	}
 
-	switch (keyp2)
-	{
-	case 13://enter
-	{
-		return KENTER;
-		break;
-	}
-	case 72: //up
-	{
-		return KUP;
-		break;
-	}
-	case 80://down
-	{
-		return KDOWN;
-		break;
-	}
-	case 75:
-	{
-		return KLEFT;
-		break;
-	}
-	case 77:
-	{
-		return KRIGHT;
-		break;
-	}
-	default:
-	{
-		break;
-	}
+		int keyp1 = _getch();
+		if (keyp1 != 13 && keyp1 != 0xE0)
+		{
+			continue;
+		}
+		int keyp2;
+		if (keyp1 == 13)
+		{
+			keyp2 = 13;
+		}
+		else
+		{
+			keyp2 = _getch();
+		}
+
+		switch (keyp2)
+		{
+		case 13://enter
+		{
+			return KENTER;
+			break;
+		}
+		case 72: //up
+		{
+			return KUP;
+			break;
+		}
+		case 80://down
+		{
+			return KDOWN;
+			break;
+		}
+		case 75:
+		{
+			return KLEFT;
+			break;
+		}
+		case 77:
+		{
+			return KRIGHT;
+			break;
+		}
+		default:
+		{
+			continue;
+			break;
+		}
+		}
 	}
 }
 
