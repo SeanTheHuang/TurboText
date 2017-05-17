@@ -38,7 +38,6 @@ void GameMaster::InitializeGame()
 		}
 	}
 	
-
 }
 
 void GameMaster::PlayGame()
@@ -54,12 +53,38 @@ void GameMaster::PlayGame()
 		InitializeGame();
 		GeneralDraw::ClearArena();
 		GeneralDraw::DrawMapOutline();
-
+		GeneralDraw::drawCurrentGameStats(p1wins, p2wins);
+		
 		player_1.drawPlayerTurbo();
 		player_2.drawPlayerTurbo();
 
-		GameIntro(roundNum);
-		roundWinner = Gameloop();
+		GameIntro(roundNum);		//GAME INTRO
+		cleanInputStack();
+		roundWinner = Gameloop();	//MAIN GAMEPLAY LOOP HERE
+
+		//Tell players outcome of last round, updats stats
+		GeneralDraw::SetDrawColour(col_white_black);
+		GeneralDraw::ClearRectangle(26, 14, 30, 4);
+		GeneralDraw::DrawRectangle(26, 14, 30, 4);
+
+		GeneralDraw::SetDrawColour(col_yellow_black);
+		GeneralDraw::GoToXY(28, 15);
+		std::cout << "Round " << roundNum << " winner: ";
+
+		if (roundWinner == 1) {
+			std::cout << "Player 1 !!";
+			p1wins++;
+		}
+		else if (roundWinner == 2) {
+			std::cout << "Player 2 !!";
+			p2wins++;
+		}
+		else {
+			std::cout << "Noone!!";
+		}
+
+		GeneralDraw::GoToXY(28, 17);
+		std::cout << "[Press any key to continue]";
 
 		//Determine if someone is winner
 		if (p1wins >= 3)
@@ -74,7 +99,24 @@ void GameMaster::PlayGame()
 			roundNum++; //Count rounds if no winner yet
 		}
 
+		//Hang program until players want to continue
+		int temp = _getch();
+		if (temp == 0 || temp == 0xE0) {
+			temp = _getch();
+		}
+
+		//Clean result box
+		GeneralDraw::ClearRectangle(26, 14, 30, 4);
 	}
+
+	//End game stuff and clean up
+	GeneralDraw::GoToXY(GeneralDraw::statsOffsetX(), GeneralDraw::statsOffsetY());
+	std::cout << "                        "
+		<< std::endl << "                              "
+		<< std::endl << "                               ";
+
+	GameEndScreen(p1wins, p2wins);
+	MainMenu();
 }
 
 void GameMaster::GameIntro(int currentRound)
@@ -142,13 +184,13 @@ int GameMaster::Gameloop()
 	}
 
 	if (!playerAlive_1 && !playerAlive_2) {
-		returnValue 0;
+		returnValue = 0;
 	}
 	else if (!playerAlive_1) {
-		returnValue 1;
+		returnValue = 2;
 	}
 	else {
-		returnValue 2;
+		returnValue = 1;
 	}
 
 	return returnValue;
@@ -202,9 +244,31 @@ void GameMaster::checkCollision(bool& playerAlive_1, bool& playerAlive_2)
 
 }
 
-void GameMaster::GameEndScreen()
+void GameMaster::GameEndScreen(int p1wins, int p2wins)
 {
+	GeneralDraw::SetDrawColour(col_white_black);
+	GeneralDraw::ClearRectangle(24, 15, 30, 10);
+	GeneralDraw::DrawRectangle(24, 15, 30, 10);
 
+	GeneralDraw::SetDrawColour(col_yellow_black);
+	GeneralDraw::GoToXY(32, 16);
+	std::cout << "[End Game Stats]";
+
+	GeneralDraw::SetDrawColour(col_white_black);
+	GeneralDraw::GoToXY(27, 18);
+	std::cout << "Player 1: " << p1wins << " Wins";
+	GeneralDraw::GoToXY(27, 20);
+	std::cout << "Player 2: " << p2wins << " Wins";
+
+	GeneralDraw::SetDrawColour(col_yellow_black);
+	GeneralDraw::GoToXY(26, 24);
+	std::cout << "Press any [key] to continue";
+
+	int temp = _getch();
+
+	if (temp == 0 || temp == 0xE0) {
+		temp = _getch();
+	}
 }
 
 void GameMaster::GameUserInputs()
@@ -277,6 +341,8 @@ void GameMaster::GameUserInputs()
 
 void GameMaster::MainMenu()
 {
+	GeneralDraw::ClearArena();
+
 	GeneralDraw::DrawMapOutline();
 	GeneralDraw::SetDrawColour(col_yellow_black);
 	GeneralDraw::GoToXY(3, 3);
@@ -596,4 +662,15 @@ void GameMaster::CreditMenu()
 	}
 	GeneralDraw::ClearRectangle(6, 14, 64, 12);
 	return;
+}
+
+void GameMaster::cleanInputStack()
+{
+	while (kbhit())
+	{
+		int temp = _getch();
+		if (temp == 0 || temp == 0xE0) {
+			temp = _getch();
+		}
+	}
 }

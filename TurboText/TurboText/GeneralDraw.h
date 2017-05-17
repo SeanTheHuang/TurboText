@@ -40,6 +40,11 @@ public:
 	static int getArenaWidth();
 	static int getArenaHeight();
 
+	static int statsOffsetX();
+	static int statsOffsetY();
+
+	static void drawCurrentGameStats(int, int);
+
 private:
 	const static int iMapXOffset = 2;
 	const static int iMapYOffset = 1;
@@ -49,6 +54,10 @@ private:
 
 	const static int arenaWidth = 75;
 	const static int arenaHeight = 45;
+
+	const static int drawStatsX = 5;
+	const static int drawStatsY = 47;
+
 };
 
 #endif

@@ -246,3 +246,19 @@ void GeneralDraw::DrawRectangle(int _iX, int _iY, int _iWidth, int _iHeight)
 int GeneralDraw::getArenaWidth() { return arenaWidth; }
 
 int GeneralDraw::getArenaHeight() { return arenaHeight; }
+
+int GeneralDraw::statsOffsetX() { return drawStatsX; }
+
+int GeneralDraw::statsOffsetY() { return drawStatsY; }
+
+void GeneralDraw::drawCurrentGameStats(int player1wins, int player2wins)
+{
+	SetDrawColour(col_yellow_black);
+	GoToXY(drawStatsX, drawStatsY);
+	std::cout << "Player 1 wins: " << player1wins;
+
+	GoToXY(drawStatsX, drawStatsY+2);
+	std::cout << "Player 2 wins: " << player2wins;
+
+
+}
