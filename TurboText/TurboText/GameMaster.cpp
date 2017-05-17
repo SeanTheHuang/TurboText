@@ -111,9 +111,9 @@ void GameMaster::PlayGame()
 
 	//End game stuff and clean up
 	GeneralDraw::GoToXY(GeneralDraw::statsOffsetX(), GeneralDraw::statsOffsetY());
-	std::cout << "                        "
-		<< std::endl << "                              "
-		<< std::endl << "                               ";
+	std::cout << "                                                                      "
+		<< std::endl << "                                                               "
+		<< std::endl << "                                                               ";
 
 	GameEndScreen(p1wins, p2wins);
 	MainMenu();
