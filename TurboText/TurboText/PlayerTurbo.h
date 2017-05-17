@@ -2,6 +2,7 @@
 #define  _PLAYER_TURBO
 
 #include "GeneralDraw.h"
+#include "GameInfo.h"
 
 enum Direction
 {
@@ -32,8 +33,10 @@ public:
 	bool GetTailTouch();
 
 	void SetXCoord(int _i);
+	int getX();
 
 	void SetYCoord(int _i);
+	int getY();
 
 	void SetDirection(Direction _dDir);
 
@@ -48,6 +51,7 @@ public:
 	void movePlayerTurbo();
 
 	void drawPlayerTurbo();
+	void drawPlayerTrail();
 
 private:
 	int iSpeed;

@@ -3,7 +3,6 @@
 
 GameMaster::GameMaster()
 {
-	InitializeGame();
 }
 
 void GameMaster::InitializeGame()
@@ -28,13 +27,17 @@ void GameMaster::InitializeGame()
 	player_1.SetTrailWidth(1);
 	player_2.SetTrailWidth(1);
 
-	//TEST STUFF JUST TO SEE DRAWING
-	GeneralDraw::DrawMapOutline();
-	player_1.drawPlayerTurbo();
-	player_2.drawPlayerTurbo();
+	player_1.SetTrailColor(GameInfo::trailColour_1);
+	player_2.SetTrailColor(GameInfo::trailColour_2);
 
-	MainMenu();
-	//PlayGame();
+	//Clean up board
+	for (int i = 0; i < GameInfo::arenaWidth; i++) {
+		for (int j = 0; j < GameInfo::arenaHeight; j++)
+		{
+			GameBoard[i][j] = 'E';
+		}
+	}
+	
 
 }
 
@@ -42,73 +45,226 @@ void GameMaster::PlayGame()
 {
 	int p1wins = 0;
 	int p2wins = 0;
-	while (true)//rounds loop
-	{
-		if (p1wins >= 3)
-		{
-			break;
-		}
-		if (p2wins >= 3)
-		{
-			break;
-		}
+	int roundNum = 1;
+	int roundWinner;
+	int foundWinner = 0; // Cases: 1 = Player 1 has won, 2 = Player 2 has won
 
-		processUserInputs();
-		
-		player_1.movePlayerTurbo();
-		player_2.movePlayerTurbo();
+	while (foundWinner == 0)//rounds loop
+	{
+		InitializeGame();
+		GeneralDraw::ClearArena();
+		GeneralDraw::DrawMapOutline();
 
 		player_1.drawPlayerTurbo();
 		player_2.drawPlayerTurbo();
-		Sleep(1000/5);
+
+		GameIntro(roundNum);
+		roundWinner = Gameloop();
+
+		//Determine if someone is winner
+		if (p1wins >= 3)
+		{
+			foundWinner = 1;
+		}
+		if (p2wins >= 3)
+		{
+			foundWinner = -1;
+		}
+		else {
+			roundNum++; //Count rounds if no winner yet
+		}
+
 	}
 }
 
-void GameMaster::processUserInputs()
+void GameMaster::GameIntro(int currentRound)
+{
+	//TODO randomise item here, inform user of item
+
+	GeneralDraw::SetDrawColour(ECOLOUR::col_yellow_black);
+	//GeneralDraw::DrawRectangle(30, 10, 16, 6);
+	GeneralDraw::GoToXY(36, 15);
+	std::cout << "Round: " << currentRound;
+	GeneralDraw::GoToXY(28, 18);
+	std::cout << "Press [Any key] to start";
+	
+	int temp = _getch();
+	if (temp == 0 || temp == 0xE0) {
+		temp = _getch();
+	}
+
+	GeneralDraw::ClearRectangle(28, 15, 25, 3);
+	
+	for (int i = 3; i >= 1; i--) {
+		GeneralDraw::GoToXY(40, 15);
+		std::cout << i;
+		Sleep(1000);
+	}
+
+	GeneralDraw::GoToXY(39, 15);
+	std::cout << "GO!";
+	Sleep(500);
+	GeneralDraw::GoToXY(39, 15);
+	std::cout << "       ";
+
+}
+
+int GameMaster::Gameloop()
+{
+	bool playerAlive_1 = true, playerAlive_2 = true;
+	int returnValue = 0;
+
+	while (playerAlive_1 && playerAlive_2) {
+	
+		//Inputs
+		GameUserInputs();
+
+		//Move - Updateboard as well
+		GameBoard[player_1.getX()][player_1.getY()] = '1';
+		GameBoard[player_2.getX()][player_2.getY()] = '2';
+
+		//Draw playerTrail
+		player_1.drawPlayerTrail();
+		player_2.drawPlayerTrail();
+
+		player_1.movePlayerTurbo();
+		player_2.movePlayerTurbo();
+
+		//Collision detection
+		checkCollision(playerAlive_1, playerAlive_2);
+
+		//Resolve result of collision
+
+		//Draw next frame
+		player_1.drawPlayerTurbo();
+		player_2.drawPlayerTurbo();
+		Sleep(1000 / 10);
+	}
+
+	if (!playerAlive_1 && !playerAlive_2) {
+		returnValue 0;
+	}
+	else if (!playerAlive_1) {
+		returnValue 1;
+	}
+	else {
+		returnValue 2;
+	}
+
+	return returnValue;
+}
+
+void GameMaster::checkCollision(bool& playerAlive_1, bool& playerAlive_2)
+{
+	//Check outside arena
+	if (player_1.getX() < 0 || player_1.getX() >= GameInfo::arenaWidth
+		|| player_1.getY() < 0 || player_1.getY() >= GameInfo::arenaHeight)
+	{
+		playerAlive_1 = false;
+	}
+
+	if (player_2.getX() < 0 || player_2.getX() >= GameInfo::arenaWidth
+		|| player_2.getY() < 0 || player_2.getY() >= GameInfo::arenaHeight)
+	{
+		playerAlive_2 = false;
+	}
+
+	//100% Turbos are in arena
+
+	//Check Turbo hit eachother
+	if ((player_1.getX() == player_2.getX()) && (player_1.getY() == player_2.getY()))
+	{
+		playerAlive_1 = false;
+		playerAlive_2 = false;
+	}
+
+	char currentPos;
+
+	//Check hitting trails now
+	currentPos = GameBoard[player_1.getX()][player_1.getY()];
+
+	if (currentPos == '1' && !player_1.GetTailTouch()) {
+		playerAlive_1 = false;
+	}
+	else if (currentPos == '2') {	//Touch enemy trail
+		playerAlive_1 = false;
+	}
+
+	currentPos = GameBoard[player_2.getX()][player_2.getY()];
+
+	if (currentPos == '2' && !player_2.GetTailTouch()) {
+		playerAlive_2 = false;
+	}
+	else if (currentPos == '1') {	//Touch enemy trail
+		playerAlive_2 = false;
+	}
+
+
+}
+
+void GameMaster::GameEndScreen()
+{
+
+}
+
+void GameMaster::GameUserInputs()
 {
 	while (kbhit())
 	{
 		int key = _getch();
+
+		if (key == 0 || key == 0xE0) {
+			key = _getch();
+		}
+
 		switch (key)
 		{
 		case 119://w
 		{
-			player_1.SetDirection(UP);
+			if (player_1.GetDirection() != DOWN)
+				player_1.SetDirection(UP);
 			break;
 		}
 		case 97://a
 		{
-			player_1.SetDirection(LEFT);
+			if (player_1.GetDirection() != RIGHT)
+				player_1.SetDirection(LEFT);
 			break;
 		}
 		case 115://s
 		{
-			player_1.SetDirection(DOWN);
+			if (player_1.GetDirection() != UP)
+				player_1.SetDirection(DOWN);
 			break;
 		}
 		case 100://d
 		{
-			player_1.SetDirection(RIGHT);
+			if (player_1.GetDirection() != LEFT)
+				player_1.SetDirection(RIGHT);
 			break;
 		}
 		case 105://i
 		{
-			player_2.SetDirection(UP);
+			if (player_2.GetDirection() != DOWN)
+				player_2.SetDirection(UP);
 			break;
 		}
 		case 106://j
 		{
-			player_2.SetDirection(LEFT);
+			if (player_2.GetDirection() != RIGHT)
+				player_2.SetDirection(LEFT);
 			break;
 		}
 		case 107://k
 		{
-			player_2.SetDirection(DOWN);
+			if (player_2.GetDirection() != UP)
+				player_2.SetDirection(DOWN);
 			break;
 		}
 		case 108://l
 		{
-			player_2.SetDirection(RIGHT);
+			if (player_2.GetDirection() != LEFT)
+				player_2.SetDirection(RIGHT);
 			break;
 		}
 		default:
@@ -248,6 +404,7 @@ void GameMaster::MainMenu()
 			{
 			case 0:
 			{
+				PlayGame();
 				break;
 			}
 			case 1:

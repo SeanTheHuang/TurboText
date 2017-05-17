@@ -16,7 +16,7 @@ int main()
 {
 	ShowConsoleCursor(false);
 	GameMaster client;
-	client.InitializeGame();
+	client.MainMenu();
 
 	//Checking how many columns being drawn
 	//

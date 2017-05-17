@@ -14,7 +14,9 @@ enum ECOLOUR
 	col_magenta_black = 5,
 	col_cyan_black = 6,
 	col_black_grey = 7,
-	col_black_white = 8
+	col_black_white = 8,
+	col_black_green = 9,
+	col_black_red = 10
 };
 
 class GeneralDraw

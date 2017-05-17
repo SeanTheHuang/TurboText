@@ -164,3 +164,12 @@ char PlayerTurbo::getPlayerSymbol()
 	}
 }
 
+void PlayerTurbo::drawPlayerTrail()
+{
+	GeneralDraw::GoToXY(iPlayerXCoord+GeneralDraw::xOffset(), iPlayerYCoord+GeneralDraw::yOffset());
+	GeneralDraw::SetDrawColour(cTrailColor);
+	std::cout << " ";
+}
+
+int PlayerTurbo::getX() { return iPlayerXCoord; }
+int PlayerTurbo::getY() { return iPlayerYCoord; }

@@ -49,7 +49,16 @@ void GeneralDraw::SetDrawColour(ECOLOUR _colour)
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_INTENSITY | FOREGROUND_INTENSITY | BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE);
 		break;
 	}
-
+	case col_black_red:
+	{
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_INTENSITY | FOREGROUND_INTENSITY | BACKGROUND_RED);
+		break;
+	}
+	case col_black_green:
+	{
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_INTENSITY | FOREGROUND_INTENSITY | BACKGROUND_GREEN);
+		break;
+	}
 	default:
 	{
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
@@ -138,10 +147,10 @@ void GeneralDraw::ClearArena()
 {
 	SetDrawColour(col_white_black);
 	
-	for (int i = 0; i < 44; i++)
+	for (int i = 0; i < 43; i++)
 	{
 		GoToXY(xOffset(), yOffset() + i);
-		for (int j = 0; j < 74;j++)
+		for (int j = 0; j < 73;j++)
 		{
 			std::cout << " ";
 		}
