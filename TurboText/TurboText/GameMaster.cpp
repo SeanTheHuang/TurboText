@@ -336,6 +336,7 @@ void GameMaster::GameUserInputs()
 			break;
 		}
 		}
+		break; // This fixes the bug.
 	}
 }
 
@@ -709,7 +710,7 @@ void GameMaster::HTPMenu()
 	GeneralDraw::GoToXY(14, 29);
 	std::cout << "wall.";
 	GeneralDraw::GoToXY(14, 31);
-	std::cout << "when a player runs into a trail or wall they lose the";
+	std::cout << "When a player runs into a trail or wall they lose the";
 	GeneralDraw::GoToXY(14, 32);
 	std::cout << "round.";
 	GeneralDraw::GoToXY(14, 34);
