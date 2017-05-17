@@ -679,7 +679,9 @@ void GameMaster::HTPMenu()
 
 	GeneralDraw::SetDrawColour(col_white_black);
 	GeneralDraw::GoToXY(14, 14);
-	std::cout << "Player 1's (RED) Controls:";
+	GeneralDraw::SetDrawColour(col_red_black); 
+	std::cout << "Player 1's Controls:";
+	GeneralDraw::SetDrawColour(col_white_black);
 	GeneralDraw::GoToXY(42, 15);
 	std::cout << "W = UP";
 	GeneralDraw::GoToXY(42, 16);
@@ -689,7 +691,9 @@ void GameMaster::HTPMenu()
 	GeneralDraw::GoToXY(42, 18);
 	std::cout << "D = RIGHT";
 	GeneralDraw::GoToXY(14, 20);
-	std::cout << "Player 2's (GREEN) Controls:";
+	GeneralDraw::SetDrawColour(col_green_black); 
+	std::cout << "Player 2's Controls:";
+	GeneralDraw::SetDrawColour(col_white_black);
 	GeneralDraw::GoToXY(42, 21);
 	std::cout << "I = UP";
 	GeneralDraw::GoToXY(42, 22);

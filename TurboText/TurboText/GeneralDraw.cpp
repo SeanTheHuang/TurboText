@@ -253,11 +253,12 @@ int GeneralDraw::statsOffsetY() { return drawStatsY; }
 
 void GeneralDraw::drawCurrentGameStats(int player1wins, int player2wins)
 {
-	SetDrawColour(col_yellow_black);
+	SetDrawColour(col_red_black);
 	GoToXY(drawStatsX, drawStatsY);
 	std::cout << "Player 1 wins: " << player1wins;
 
-	GoToXY(drawStatsX, drawStatsY+2);
+	SetDrawColour(col_green_black);
+	GoToXY(drawStatsX + 51, drawStatsY);
 	std::cout << "Player 2 wins: " << player2wins;
 
 
