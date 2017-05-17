@@ -475,6 +475,8 @@ void GameMaster::MainMenu()
 			}
 			case 1:
 			{
+				HTPMenu();
+				iMenuOption = 0;
 				break;
 			}
 			case 2:
@@ -661,6 +663,63 @@ void GameMaster::CreditMenu()
 
 	}
 	GeneralDraw::ClearRectangle(6, 14, 64, 12);
+	return;
+}
+
+void GameMaster::HTPMenu()
+{
+	bool leave = false;
+	GeneralDraw::SetDrawColour(col_white_black);
+	GeneralDraw::ClearRectangle(6, 10, 64, 29);
+	GeneralDraw::DrawRectangle(6, 10, 64, 29);
+
+	GeneralDraw::GoToXY(32, 12);
+	GeneralDraw::SetDrawColour(col_yellow_black);
+	std::cout << "How To Play";
+
+	GeneralDraw::SetDrawColour(col_white_black);
+	GeneralDraw::GoToXY(14, 14);
+	std::cout << "Player 1's (RED) Controls:";
+	GeneralDraw::GoToXY(42, 15);
+	std::cout << "W = UP";
+	GeneralDraw::GoToXY(42, 16);
+	std::cout << "A = LEFT";
+	GeneralDraw::GoToXY(42, 17);
+	std::cout << "S = DOWN";
+	GeneralDraw::GoToXY(42, 18);
+	std::cout << "D = RIGHT";
+	GeneralDraw::GoToXY(14, 20);
+	std::cout << "Player 2's (GREEN) Controls:";
+	GeneralDraw::GoToXY(42, 21);
+	std::cout << "I = UP";
+	GeneralDraw::GoToXY(42, 22);
+	std::cout << "J = LEFT";
+	GeneralDraw::GoToXY(42, 23);
+	std::cout << "K = DOWN";
+	GeneralDraw::GoToXY(42, 24);
+	std::cout << "L = RIGHT";
+	GeneralDraw::GoToXY(14, 26);
+	std::cout << "Avoid both your trail and your opponents trail.";
+	GeneralDraw::GoToXY(14, 28);
+	std::cout << "Win the round by forcing your opponent into a trail or";
+	GeneralDraw::GoToXY(14, 29);
+	std::cout << "wall.";
+	GeneralDraw::GoToXY(14, 31);
+	std::cout << "when a player runs into a trail or wall they lose the";
+	GeneralDraw::GoToXY(14, 32);
+	std::cout << "round.";
+	GeneralDraw::GoToXY(14, 34);
+	std::cout << "First player to win three rounds wins the game!";
+	// items could be here.
+
+	GeneralDraw::SetDrawColour(col_yellow_black);
+	GeneralDraw::GoToXY(28, 37);
+	std::cout << "Press ENTER to return";
+	while (MenuInputs() != KENTER)
+	{
+
+	}
+	GeneralDraw::ClearRectangle(6, 10, 64, 29);
 	return;
 }
 
