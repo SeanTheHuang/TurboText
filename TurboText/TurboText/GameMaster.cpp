@@ -273,7 +273,7 @@ void GameMaster::GameEndScreen(int p1wins, int p2wins)
 
 void GameMaster::GameUserInputs()
 {
-	while (kbhit())
+	while (_kbhit())
 	{
 		int key = _getch();
 
@@ -510,7 +510,7 @@ KEYS GameMaster::MenuInputs()
 		int keyp1 = _getch();
 		if (keyp1 != 13 && keyp1 != 0xE0)
 		{
-			continue;
+			continue; 
 		}
 		int keyp2;
 		if (keyp1 == 13)
@@ -730,7 +730,7 @@ void GameMaster::HTPMenu()
 
 void GameMaster::cleanInputStack()
 {
-	while (kbhit())
+	while (_kbhit())
 	{
 		int temp = _getch();
 		if (temp == 0 || temp == 0xE0) {
