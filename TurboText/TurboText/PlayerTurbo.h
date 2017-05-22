@@ -42,11 +42,17 @@ public:
 
 	Direction GetDirection();
 
+	void SetTrailOff(int _i);
+	int GetTrailOff();
+
 	void SetPlayerColor(ECOLOUR _cCol);
 
 	void SetTrailColor(ECOLOUR _cCol);
 
 	void SetPlayerUpgradeColor(ECOLOUR _cCol);
+
+	bool getbTrail();
+	void setbTrail(bool _b);
 
 	void movePlayerTurbo();
 
@@ -59,6 +65,8 @@ private:
 	bool bCanTouchOwnTail;
 	int iPlayerXCoord;
 	int iPlayerYCoord;
+	int iTrailOff;
+	bool bTrail = false;
 
 	Direction dDirection;
 	ECOLOUR cPlayerColor;

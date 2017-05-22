@@ -173,3 +173,24 @@ void PlayerTurbo::drawPlayerTrail()
 
 int PlayerTurbo::getX() { return iPlayerXCoord; }
 int PlayerTurbo::getY() { return iPlayerYCoord; }
+
+void PlayerTurbo::SetTrailOff(int _i)
+{
+	iTrailOff = _i;
+}
+
+int PlayerTurbo::GetTrailOff()
+{
+	return iTrailOff;
+}
+
+
+bool PlayerTurbo::getbTrail()
+{
+	return bTrail;
+}
+
+void PlayerTurbo::setbTrail(bool _b)
+{
+	bTrail = _b;
+}

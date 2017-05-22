@@ -263,3 +263,35 @@ void GeneralDraw::drawCurrentGameStats(int player1wins, int player2wins)
 
 
 }
+
+void GeneralDraw::DrawTrailMeters(int p1trail, int p2trail)
+{
+	SetDrawColour(col_white_black);
+	for (int i = 0; i < 20; i++)
+	{
+		GoToXY(5 + i, 50);
+		std::cout << " ";
+	}
+
+	SetDrawColour(col_red_black);
+	char c = 219;
+	for (int j = 0; j < p1trail; j++)
+	{
+		GoToXY(5 + j, 50);
+		std::cout << c;
+	}
+
+	SetDrawColour(col_white_black);
+	for (int i = 0; i < 20; i++)
+	{
+		GoToXY(5 + 51 + i, 50);
+		std::cout << " ";
+	}
+
+	SetDrawColour(col_green_black);
+	for (int j = 0; j < p2trail; j++)
+	{
+		GoToXY(5 + 51 + j, 50);
+		std::cout << c;
+	}
+}

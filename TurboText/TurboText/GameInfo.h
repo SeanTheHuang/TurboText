@@ -25,6 +25,8 @@ public:
 	static const int startX_2 = 65;
 	static const int startY_2 = 23;
 
+	static const int startTrailOff = 20;
+
 	static const int arenaWidth = 73;
 	static const int arenaHeight = 43;
 
