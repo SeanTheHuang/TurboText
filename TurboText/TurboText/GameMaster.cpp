@@ -671,38 +671,42 @@ void GameMaster::HTPMenu()
 {
 	bool leave = false;
 	GeneralDraw::SetDrawColour(col_white_black);
-	GeneralDraw::ClearRectangle(6, 10, 64, 29);
-	GeneralDraw::DrawRectangle(6, 10, 64, 29);
+	GeneralDraw::ClearRectangle(6, 8, 64, 35);
+	GeneralDraw::DrawRectangle(6, 8, 64, 35);
 
-	GeneralDraw::GoToXY(32, 12);
+	GeneralDraw::GoToXY(32, 10);
 	GeneralDraw::SetDrawColour(col_yellow_black);
 	std::cout << "How To Play";
 
 	GeneralDraw::SetDrawColour(col_white_black);
-	GeneralDraw::GoToXY(14, 14);
+	GeneralDraw::GoToXY(14, 12);
 	GeneralDraw::SetDrawColour(col_red_black); 
 	std::cout << "Player 1's Controls:";
 	GeneralDraw::SetDrawColour(col_white_black);
+	GeneralDraw::GoToXY(42, 13);
+	std::cout << "[W] = UP";
+	GeneralDraw::GoToXY(42, 14);
+	std::cout << "[A] = LEFT";
 	GeneralDraw::GoToXY(42, 15);
-	std::cout << "W = UP";
+	std::cout << "[S] = DOWN";
 	GeneralDraw::GoToXY(42, 16);
-	std::cout << "A = LEFT";
+	std::cout << "[D] = RIGHT";
 	GeneralDraw::GoToXY(42, 17);
-	std::cout << "S = DOWN";
-	GeneralDraw::GoToXY(42, 18);
-	std::cout << "D = RIGHT";
-	GeneralDraw::GoToXY(14, 20);
+	std::cout << "[Z] = TURN OFF TRAIL";
+	GeneralDraw::GoToXY(14, 19);
 	GeneralDraw::SetDrawColour(col_green_black); 
 	std::cout << "Player 2's Controls:";
 	GeneralDraw::SetDrawColour(col_white_black);
+	GeneralDraw::GoToXY(42, 20);
+	std::cout << "[I] = UP";
 	GeneralDraw::GoToXY(42, 21);
-	std::cout << "I = UP";
+	std::cout << "[J] = LEFT";
 	GeneralDraw::GoToXY(42, 22);
-	std::cout << "J = LEFT";
+	std::cout << "[K] = DOWN";
 	GeneralDraw::GoToXY(42, 23);
-	std::cout << "K = DOWN";
+	std::cout << "[L] = RIGHT";
 	GeneralDraw::GoToXY(42, 24);
-	std::cout << "L = RIGHT";
+	std::cout << "[M] = TURN OFF TRAIL";
 	GeneralDraw::GoToXY(14, 26);
 	std::cout << "Avoid both your trail and your opponents trail.";
 	GeneralDraw::GoToXY(14, 28);
@@ -715,16 +719,19 @@ void GameMaster::HTPMenu()
 	std::cout << "round.";
 	GeneralDraw::GoToXY(14, 34);
 	std::cout << "First player to win three rounds wins the game!";
-	// items could be here.
+	GeneralDraw::GoToXY(14, 36);
+	std::cout << "Toggle your trail on and off off for a limited amount";
+	GeneralDraw::GoToXY(14, 37);
+	std::cout << "of time to give yourself oppertunities to escape!";
 
 	GeneralDraw::SetDrawColour(col_yellow_black);
-	GeneralDraw::GoToXY(28, 37);
+	GeneralDraw::GoToXY(28, 41);
 	std::cout << "Press ENTER to return";
 	while (MenuInputs() != KENTER)
 	{
 
 	}
-	GeneralDraw::ClearRectangle(6, 10, 64, 29);
+	GeneralDraw::ClearRectangle(6, 8, 64, 35);
 	return;
 }
 
