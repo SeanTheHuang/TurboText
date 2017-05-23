@@ -192,6 +192,7 @@ int GameMaster::Gameloop()
 		}
 		else
 		{
+			GeneralDraw::SetDrawColour(col_white_black);
 			GeneralDraw::GoToXY(p1oldx, p1oldy);std::cout << " ";
 			player_1.SetTrailOff(player_1.GetTrailOff() - 1);
 		}
@@ -202,6 +203,7 @@ int GameMaster::Gameloop()
 		}
 		else
 		{
+			GeneralDraw::SetDrawColour(col_white_black);
 			GeneralDraw::GoToXY(p2oldx, p2oldy);std::cout << " ";
 			player_2.SetTrailOff(player_2.GetTrailOff() - 1);
 		}
