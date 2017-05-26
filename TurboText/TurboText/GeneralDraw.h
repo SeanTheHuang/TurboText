@@ -46,6 +46,7 @@ public:
 	static void drawCurrentGameStats(int, int);
 
 	static void DrawTrailMeters(int p1trail, int p2trail);
+	static void DrawMeterBox();
 
 private:
 	const static int iMapXOffset = 2;

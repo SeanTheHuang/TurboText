@@ -264,9 +264,123 @@ void GeneralDraw::drawCurrentGameStats(int player1wins, int player2wins)
 
 }
 
+void GeneralDraw::DrawMeterBox()
+{
+	SetDrawColour(col_white_black);
+	char a = 179;
+	for (int i = 0; i < 4;i++)
+	{
+		GoToXY(4, 50 - i);
+		std::cout << a;
+		GoToXY(72, 50 - i);
+		std::cout << a;
+
+		GoToXY(51, 50 - i);
+		std::cout << a;
+
+		GoToXY(25, 50 - i);
+		std::cout << a;
+	}
+	GoToXY(21, 47);
+	std::cout << a;
+	GoToXY(55, 47);
+	std::cout << a;
+	GoToXY(21, 48);
+	std::cout << a;
+	GoToXY(55, 48);
+	std::cout << a;
+
+	a = 195;
+	GoToXY(4, 49);
+	std::cout << a;
+	GoToXY(51, 49);
+	std::cout << a;
+
+	a = 192;
+	GoToXY(4, 51);
+	std::cout << a;
+	GoToXY(51, 51);
+	std::cout << a;
+
+	a = 217;
+	GoToXY(25, 51);
+	std::cout << a;
+	GoToXY(72, 51);
+	std::cout << a;
+
+	a = 180;
+	GoToXY(25, 49);
+	std::cout << a;
+	a = 180;
+	GoToXY(72, 49);
+	std::cout << a;
+
+	a = 218;
+	GoToXY(4, 46);
+	std::cout << a;
+	GoToXY(51, 46);
+	std::cout << a;
+
+	a = 191;
+	GoToXY(25, 46);
+	std::cout << a;
+	GoToXY(72, 46);
+	std::cout << a;
+
+	a = 196;
+	for (int i = 0; i < 20;i++)
+	{
+		GoToXY(5 + i, 49);
+		std::cout << a;
+		GoToXY(52 + i, 49);
+		std::cout << a;
+		GoToXY(5 + i, 51);
+		std::cout << a;
+		GoToXY(52 + i, 51);
+		std::cout << a;
+		GoToXY(5 + i, 46);
+		std::cout << a;
+		GoToXY(52 + i, 46);
+		std::cout << a;
+	}
+
+	GoToXY(7, 49);
+	std::cout << "Trail";// Meter";
+	GoToXY(65, 49);
+	std::cout << "Trail";
+	a = 193;
+	GoToXY(55, 49);
+	std::cout << a;
+	GoToXY(21, 49);
+	std::cout << a;
+	a = 194;
+	GoToXY(21, 46);
+	std::cout << a;
+	GoToXY(55, 46);
+	std::cout << a;
+
+	
+	a = 196;
+	for (int i = 0; i < 25;i++)
+	{
+		GoToXY(26+i, 46);
+		std::cout << a;
+		GoToXY(26 + i, 51);
+		std::cout << a;
+	}
+	GeneralDraw::SetDrawColour(col_yellow_black);
+	GoToXY(28, 46);
+	std::cout << "TURBO TEXT";
+	GoToXY(39, 51);
+	std::cout << "TURBO TEXT";
+
+	
+}
+
 void GeneralDraw::DrawTrailMeters(int p1trail, int p2trail)
 {
 	SetDrawColour(col_white_black);
+
 	for (int i = 0; i < 20; i++)
 	{
 		GoToXY(5 + i, 50);
@@ -281,17 +395,20 @@ void GeneralDraw::DrawTrailMeters(int p1trail, int p2trail)
 		std::cout << c;
 	}
 
+	
 	SetDrawColour(col_white_black);
 	for (int i = 0; i < 20; i++)
 	{
-		GoToXY(5 + 51 + i, 50);
+		GoToXY(5 + 47 + i, 50);
 		std::cout << " ";
 	}
+	
 
+	
 	SetDrawColour(col_green_black);
 	for (int j = 0; j < p2trail; j++)
 	{
-		GoToXY(5 + 51 + j, 50);
+		GoToXY(5 + 47 + j, 50);
 		std::cout << c;
 	}
 }

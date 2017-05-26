@@ -58,6 +58,7 @@ void GameMaster::PlayGame()
 		GeneralDraw::DrawMapOutline();
 		GeneralDraw::drawCurrentGameStats(p1wins, p2wins);
 		GeneralDraw::DrawTrailMeters(player_1.GetTrailOff(), player_2.GetTrailOff());
+		GeneralDraw::DrawMeterBox();
 		player_1.setbTrail(false);
 		player_2.setbTrail(false);
 		player_1.drawPlayerTurbo();
@@ -115,10 +116,7 @@ void GameMaster::PlayGame()
 	}
 
 	//End game stuff and clean up
-	GeneralDraw::GoToXY(GeneralDraw::statsOffsetX(), GeneralDraw::statsOffsetY());
-	std::cout << "                                                                      "
-		<< std::endl << "                                                               "
-		<< std::endl << "                                                               ";
+	GeneralDraw::ClearRectangle(4, 46, 69, 7);
 
 	GameEndScreen(p1wins, p2wins);
 	MainMenu();
@@ -189,23 +187,33 @@ int GameMaster::Gameloop()
 		if ((player_1.getbTrail() == false) || (player_1.GetTrailOff() <= 0))
 		{
 			player_1.drawPlayerTrail();
+			GeneralDraw::SetDrawColour(col_red_black);
+			GeneralDraw::GoToXY(23, 47);
+			std::cout << "Z";
 		}
 		else
 		{
 			GeneralDraw::SetDrawColour(col_white_black);
 			GeneralDraw::GoToXY(p1oldx, p1oldy);std::cout << " ";
 			player_1.SetTrailOff(player_1.GetTrailOff() - 1);
+			GeneralDraw::GoToXY(23, 47);
+			std::cout << "Z";
 		}
 
 		if ((player_2.getbTrail() == false) || (player_2.GetTrailOff() <= 0))
 		{
 			player_2.drawPlayerTrail();
+			GeneralDraw::SetDrawColour(col_green_black);
+			GeneralDraw::GoToXY(53, 47);
+			std::cout << "M";
 		}
 		else
 		{
 			GeneralDraw::SetDrawColour(col_white_black);
 			GeneralDraw::GoToXY(p2oldx, p2oldy);std::cout << " ";
 			player_2.SetTrailOff(player_2.GetTrailOff() - 1);
+			GeneralDraw::GoToXY(53, 47);
+			std::cout << "M";
 		}
 
 		GeneralDraw::DrawTrailMeters(player_1.GetTrailOff(), player_2.GetTrailOff());
