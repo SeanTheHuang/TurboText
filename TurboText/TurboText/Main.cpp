@@ -1,4 +1,6 @@
 #include "GameMaster.h"
+#include "TestCaseManager.h"
+
 #include <string>
 
 void ShowConsoleCursor(bool showFlag)
@@ -14,6 +16,9 @@ void ShowConsoleCursor(bool showFlag)
 
 int main()
 {
+	//Run test here. REMOVE IF WANT TO RUN 0.015 seconds faster! (and the weird preloads)
+	TestCaseManager::testAll();
+
 	ShowConsoleCursor(false);
 	GameMaster client;
 	client.MainMenu();

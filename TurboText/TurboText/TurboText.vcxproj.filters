@@ -24,9 +24,6 @@
     <ClInclude Include="GeneralDraw.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GameInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -45,9 +42,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GeneralDraw.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Item.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PlayerTurbo.cpp">
