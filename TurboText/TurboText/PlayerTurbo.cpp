@@ -122,12 +122,12 @@ void PlayerTurbo::movePlayerTurbo()
 	}
 }
 
-void PlayerTurbo::drawPlayerTurbo()
+void PlayerTurbo::DrawPlayerTurbo()
 {
 	int xPos = GeneralDraw::xOffset() + iPlayerXCoord;
 	int yPos = GeneralDraw::yOffset() + iPlayerYCoord;
 
-	char symbol = getPlayerSymbol();
+	char symbol = GetPlayerSymbol();
 
 	if (!bCanTouchOwnTail)
 		GeneralDraw::SetDrawColour(cPlayerColor);
@@ -138,7 +138,7 @@ void PlayerTurbo::drawPlayerTurbo()
 	std::cout << symbol;
 }
 
-char PlayerTurbo::getPlayerSymbol()
+char PlayerTurbo::GetPlayerSymbol()
 {
 	switch (dDirection)
 	{
@@ -164,7 +164,7 @@ char PlayerTurbo::getPlayerSymbol()
 	}
 }
 
-void PlayerTurbo::drawPlayerTrail()
+void PlayerTurbo::DrawPlayerTrail()
 {
 
 	GeneralDraw::GoToXY(iPlayerXCoord+GeneralDraw::xOffset(), iPlayerYCoord+GeneralDraw::yOffset());
@@ -172,8 +172,8 @@ void PlayerTurbo::drawPlayerTrail()
 	std::cout << " ";
 }
 
-int PlayerTurbo::getX() { return iPlayerXCoord; }
-int PlayerTurbo::getY() { return iPlayerYCoord; }
+int PlayerTurbo::GetX() { return iPlayerXCoord; }
+int PlayerTurbo::GetY() { return iPlayerYCoord; }
 
 void PlayerTurbo::SetTrailOff(int _i)
 {
@@ -186,12 +186,12 @@ int PlayerTurbo::GetTrailOff()
 }
 
 
-bool PlayerTurbo::getbTrail()
+bool PlayerTurbo::GetbTrail()
 {
 	return bTrail;
 }
 
-void PlayerTurbo::setbTrail(bool _b)
+void PlayerTurbo::SetbTrail(bool _b)
 {
 	bTrail = _b;
 }

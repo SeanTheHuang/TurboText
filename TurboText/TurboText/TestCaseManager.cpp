@@ -52,13 +52,13 @@ void TestCaseManager::testGameMasterClass()
 void TestCaseManager::test_PT_drawPlayerTurbo()
 {
 	PlayerTurbo test;
-	test.drawPlayerTurbo();
+	test.DrawPlayerTurbo();
 }
 
 void TestCaseManager::test_PT_drawPlayerTrail()
 {
 	PlayerTurbo test;
-	test.drawPlayerTrail();
+	test.DrawPlayerTrail();
 }
 
 void TestCaseManager::test_PT_movePlayerTurbo()
@@ -106,7 +106,7 @@ void TestCaseManager::test_GD_DrawRectangle()
 
 void TestCaseManager::test_GD_drawCurrentGameStats()
 {
-	GeneralDraw::drawCurrentGameStats(2, 1);
+	GeneralDraw::DrawCurrentGameStats(2, 1);
 }
 
 void TestCaseManager::test_GD_DrawTrailMeters()

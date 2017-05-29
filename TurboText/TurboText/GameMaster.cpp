@@ -56,16 +56,16 @@ void GameMaster::PlayGame()
 		InitializeGame();
 		GeneralDraw::ClearArena();
 		GeneralDraw::DrawMapOutline();
-		GeneralDraw::drawCurrentGameStats(p1wins, p2wins);
+		GeneralDraw::DrawCurrentGameStats(p1wins, p2wins);
 		GeneralDraw::DrawTrailMeters(player_1.GetTrailOff(), player_2.GetTrailOff());
 		GeneralDraw::DrawMeterBox();
-		player_1.setbTrail(false);
-		player_2.setbTrail(false);
-		player_1.drawPlayerTurbo();
-		player_2.drawPlayerTurbo();
+		player_1.SetbTrail(false);
+		player_2.SetbTrail(false);
+		player_1.DrawPlayerTurbo();
+		player_2.DrawPlayerTurbo();
 
 		GameIntro(roundNum);		//GAME INTRO
-		cleanInputStack();
+		CleanInputStack();
 		roundWinner = Gameloop();	//MAIN GAMEPLAY LOOP HERE
 
 		//Tell players outcome of last round, updats stats
@@ -164,29 +164,29 @@ int GameMaster::Gameloop()
 		//Inputs
 		GameUserInputs();
 
-		p1oldx = player_1.getX() + GeneralDraw::xOffset();
-		p1oldy = player_1.getY() + GeneralDraw::yOffset();
-		p2oldx = player_2.getX() + GeneralDraw::xOffset();
-		p2oldy = player_2.getY() + GeneralDraw::yOffset();
+		p1oldx = player_1.GetX() + GeneralDraw::xOffset();
+		p1oldy = player_1.GetY() + GeneralDraw::yOffset();
+		p2oldx = player_2.GetX() + GeneralDraw::xOffset();
+		p2oldy = player_2.GetY() + GeneralDraw::yOffset();
 
 		//Move - Updateboard as well
-		if ((player_1.getbTrail() == false) || (player_1.GetTrailOff() <= 0))
+		if ((player_1.GetbTrail() == false) || (player_1.GetTrailOff() <= 0))
 		{
-			GameBoard[player_1.getX()][player_1.getY()] = '1';
+			GameBoard[player_1.GetX()][player_1.GetY()] = '1';
 		}
 		
-		if ((player_2.getbTrail() == false) || (player_2.GetTrailOff() <= 0))
+		if ((player_2.GetbTrail() == false) || (player_2.GetTrailOff() <= 0))
 		{
-			GameBoard[player_2.getX()][player_2.getY()] = '2';
+			GameBoard[player_2.GetX()][player_2.GetY()] = '2';
 		}
 
 		
 		
 
 		//Draw playerTrail
-		if ((player_1.getbTrail() == false) || (player_1.GetTrailOff() <= 0))
+		if ((player_1.GetbTrail() == false) || (player_1.GetTrailOff() <= 0))
 		{
-			player_1.drawPlayerTrail();
+			player_1.DrawPlayerTrail();
 			GeneralDraw::SetDrawColour(col_red_black);
 			GeneralDraw::GoToXY(23, 47);
 			std::cout << "Z";
@@ -200,9 +200,9 @@ int GameMaster::Gameloop()
 			std::cout << "Z";
 		}
 
-		if ((player_2.getbTrail() == false) || (player_2.GetTrailOff() <= 0))
+		if ((player_2.GetbTrail() == false) || (player_2.GetTrailOff() <= 0))
 		{
-			player_2.drawPlayerTrail();
+			player_2.DrawPlayerTrail();
 			GeneralDraw::SetDrawColour(col_green_black);
 			GeneralDraw::GoToXY(53, 47);
 			std::cout << "M";
@@ -221,14 +221,14 @@ int GameMaster::Gameloop()
 		player_2.movePlayerTurbo();
 
 		//Collision detection
-		checkCollision(playerAlive_1, playerAlive_2);
+		CheckCollision(playerAlive_1, playerAlive_2);
 
 		//Resolve result of collision
 		
 		
 		//Draw next frame
-		player_1.drawPlayerTurbo();
-		player_2.drawPlayerTurbo();
+		player_1.DrawPlayerTurbo();
+		player_2.DrawPlayerTurbo();
 		Sleep(1000 / 10);
 	}
 
@@ -245,17 +245,17 @@ int GameMaster::Gameloop()
 	return returnValue;
 }
 
-void GameMaster::checkCollision(bool& playerAlive_1, bool& playerAlive_2)
+void GameMaster::CheckCollision(bool& playerAlive_1, bool& playerAlive_2)
 {
 	//Check outside arena
-	if (player_1.getX() < 0 || player_1.getX() >= GameInfo::arenaWidth
-		|| player_1.getY() < 0 || player_1.getY() >= GameInfo::arenaHeight)
+	if (player_1.GetX() < 0 || player_1.GetX() >= GameInfo::arenaWidth
+		|| player_1.GetY() < 0 || player_1.GetY() >= GameInfo::arenaHeight)
 	{
 		playerAlive_1 = false;
 	}
 
-	if (player_2.getX() < 0 || player_2.getX() >= GameInfo::arenaWidth
-		|| player_2.getY() < 0 || player_2.getY() >= GameInfo::arenaHeight)
+	if (player_2.GetX() < 0 || player_2.GetX() >= GameInfo::arenaWidth
+		|| player_2.GetY() < 0 || player_2.GetY() >= GameInfo::arenaHeight)
 	{
 		playerAlive_2 = false;
 	}
@@ -263,7 +263,7 @@ void GameMaster::checkCollision(bool& playerAlive_1, bool& playerAlive_2)
 	//100% Turbos are in arena
 
 	//Check Turbo hit eachother
-	if ((player_1.getX() == player_2.getX()) && (player_1.getY() == player_2.getY()))
+	if ((player_1.GetX() == player_2.GetX()) && (player_1.GetY() == player_2.GetY()))
 	{
 		playerAlive_1 = false;
 		playerAlive_2 = false;
@@ -272,7 +272,7 @@ void GameMaster::checkCollision(bool& playerAlive_1, bool& playerAlive_2)
 	char currentPos;
 
 	//Check hitting trails now
-	currentPos = GameBoard[player_1.getX()][player_1.getY()];
+	currentPos = GameBoard[player_1.GetX()][player_1.GetY()];
 
 	if (currentPos == '1' && !player_1.GetTailTouch()) {
 		playerAlive_1 = false;
@@ -281,7 +281,7 @@ void GameMaster::checkCollision(bool& playerAlive_1, bool& playerAlive_2)
 		playerAlive_1 = false;
 	}
 
-	currentPos = GameBoard[player_2.getX()][player_2.getY()];
+	currentPos = GameBoard[player_2.GetX()][player_2.GetY()];
 
 	if (currentPos == '2' && !player_2.GetTailTouch()) {
 		playerAlive_2 = false;
@@ -358,13 +358,13 @@ void GameMaster::GameUserInputs()
 		}
 		case 122://z
 		{
-			if (player_1.getbTrail() == false)
+			if (player_1.GetbTrail() == false)
 			{
-				player_1.setbTrail(true);
+				player_1.SetbTrail(true);
 			}
 			else
 			{
-				player_1.setbTrail(false);
+				player_1.SetbTrail(false);
 			}
 			break;
 		}
@@ -394,13 +394,13 @@ void GameMaster::GameUserInputs()
 		}
 		case 109://m
 		{
-			if (player_2.getbTrail() == false)
+			if (player_2.GetbTrail() == false)
 			{
-				player_2.setbTrail(true);
+				player_2.SetbTrail(true);
 			}
 			else
 			{
-				player_2.setbTrail(false);
+				player_2.SetbTrail(false);
 			}
 			break;
 		}
@@ -808,7 +808,7 @@ void GameMaster::HTPMenu()
 	return;
 }
 
-void GameMaster::cleanInputStack()
+void GameMaster::CleanInputStack()
 {
 	while (_kbhit())
 	{

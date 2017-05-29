@@ -37,13 +37,13 @@ public:
 	static int xOffset();
 	static int yOffset();
 
-	static int getArenaWidth();
-	static int getArenaHeight();
+	static int GetArenaWidth();
+	static int GetArenaHeight();
 
 	static int statsOffsetX();
 	static int statsOffsetY();
 
-	static void drawCurrentGameStats(int, int);
+	static void DrawCurrentGameStats(int, int);
 
 	static void DrawTrailMeters(int p1trail, int p2trail);
 	static void DrawMeterBox();

@@ -44,9 +44,9 @@ private:
 	//[Play Game] functions
 	void GameUserInputs();
 	void GameIntro(int);
-	void cleanInputStack(); //Use so players don't stack commands before game
+	void CleanInputStack(); //Use so players don't stack commands before game
 
-	void checkCollision(bool&, bool&); //Return: 0 = no collision, 1 = Player 1 hit, 2 = Player 2 hit
+	void CheckCollision(bool&, bool&); //Return: 0 = no collision, 1 = Player 1 hit, 2 = Player 2 hit
 	int Gameloop(); //Return: 0 = no winner, 1 = player 1 won, 2 = player 2 won
 	void GameEndScreen(int, int);
 

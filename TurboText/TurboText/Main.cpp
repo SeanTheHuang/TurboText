@@ -17,7 +17,7 @@ void ShowConsoleCursor(bool showFlag)
 int main()
 {
 	//Run test here. REMOVE IF WANT TO RUN 0.015 seconds faster! (and the weird preloads)
-	TestCaseManager::testAll();
+	//TestCaseManager::testAll();
 
 	ShowConsoleCursor(false);
 	GameMaster client;

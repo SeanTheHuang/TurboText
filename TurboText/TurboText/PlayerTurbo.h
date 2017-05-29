@@ -33,10 +33,10 @@ public:
 	bool GetTailTouch();
 
 	void SetXCoord(int _i);
-	int getX();
+	int GetX();
 
 	void SetYCoord(int _i);
-	int getY();
+	int GetY();
 
 	void SetDirection(Direction _dDir);
 
@@ -51,13 +51,13 @@ public:
 
 	void SetPlayerUpgradeColor(ECOLOUR _cCol);
 
-	bool getbTrail();
-	void setbTrail(bool _b);
+	bool GetbTrail();
+	void SetbTrail(bool _b);
 
 	void movePlayerTurbo();
 
-	void drawPlayerTurbo();
-	void drawPlayerTrail();
+	void DrawPlayerTurbo();
+	void DrawPlayerTrail();
 
 private:
 	int iSpeed;
@@ -73,7 +73,7 @@ private:
 	ECOLOUR cTrailColor;
 	ECOLOUR cPlayerWithUpgradeColor;
 
-	char getPlayerSymbol();
+	char GetPlayerSymbol();
 };
 
 #endif
