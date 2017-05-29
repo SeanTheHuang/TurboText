@@ -67,7 +67,7 @@ void GameMaster::PlayGame()
 		GameIntro(roundNum);		//GAME INTRO
 		CleanInputStack();
 		roundWinner = Gameloop();	//MAIN GAMEPLAY LOOP HERE
-
+		CleanInputStack();
 		//Tell players outcome of last round, updats stats
 		GeneralDraw::SetDrawColour(col_white_black);
 		GeneralDraw::ClearRectangle(26, 14, 30, 4);
@@ -216,6 +216,7 @@ int GameMaster::Gameloop()
 			std::cout << "M";
 		}
 
+		//CleanInputStack();
 		GeneralDraw::DrawTrailMeters(player_1.GetTrailOff(), player_2.GetTrailOff());
 		player_1.movePlayerTurbo();
 		player_2.movePlayerTurbo();
@@ -230,6 +231,7 @@ int GameMaster::Gameloop()
 		player_1.DrawPlayerTurbo();
 		player_2.DrawPlayerTurbo();
 		Sleep(1000 / 10);
+		
 	}
 
 	if (!playerAlive_1 && !playerAlive_2) {
@@ -330,6 +332,11 @@ void GameMaster::GameUserInputs()
 			key = _getch();
 		}
 
+		if (key > 64 && key < 91)
+		{
+			key += 32;
+		}
+
 		switch (key)
 		{
 		case 119://w
@@ -350,13 +357,13 @@ void GameMaster::GameUserInputs()
 				player_1.SetDirection(DOWN);
 			break;
 		}
-		case 100://d
+		case 100 ://d
 		{
 			if (player_1.GetDirection() != LEFT)
 				player_1.SetDirection(RIGHT);
 			break;
 		}
-		case 122://z
+		case 122 ://z
 		{
 			if (player_1.GetbTrail() == false)
 			{
