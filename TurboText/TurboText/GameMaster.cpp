@@ -590,7 +590,32 @@ KEYS GameMaster::MenuInputs()
 		int keyp1 = _getch();
 		if (keyp1 != 13 && keyp1 != 0xE0)
 		{
-			continue; 
+			switch (keyp1)
+			{
+			case 'w':
+			{
+				return KUP;
+				break;
+			}
+			case 'a':
+			{
+				return KLEFT;
+				break;
+			}
+			case 's':
+			{
+				return KDOWN;
+				break;
+			}
+			case 'd':
+			{
+				return KRIGHT;
+				break;
+			}
+			default:
+				continue;
+			}
+			
 		}
 		int keyp2;
 		if (keyp1 == 13)

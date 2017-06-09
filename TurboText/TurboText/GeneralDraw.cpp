@@ -70,8 +70,8 @@ void GeneralDraw::SetDrawColour(ECOLOUR _colour)
 
 void GeneralDraw::DrawMapOutline()
 {
-	char a = 186;//vertical lines ascii
-	char b = 205;//horizontal lines ascii
+	char a = (char)186;//vertical lines ascii
+	char b = (char)205;//horizontal lines ascii
 
 	//choose colour here
 	SetDrawColour(col_white_black);
@@ -106,23 +106,19 @@ void GeneralDraw::DrawMapOutline()
 
 	//TOP-LEFT CORNER
 	GoToXY(arenaStartX, arenaStartY);
-	a = 201;
-	std::cout << a;
+	std::cout << (char)201;
 
 	//TOP-RIGHT
-	a = 187;
 	GoToXY(arenaStartX + arenaWidth-1, arenaStartY);
-	std::cout << a;
+	std::cout << (char)187;
 
 	//BOTTOM-LEFT
-	a = 200;
 	GoToXY(arenaStartX, arenaStartY+arenaHeight-1);
-	std::cout << a;
+	std::cout << (char)200;
 
 	//BOTTOM-RIGHT
-	a = 188;
 	GoToXY(arenaStartX+arenaWidth-1, arenaStartY+arenaHeight-1);
-	std::cout << a;
+	std::cout << (char)188;
 }
 
 void GeneralDraw::GoToXY(int _iX, int _iY)
@@ -197,7 +193,7 @@ void GeneralDraw::DrawRectangle(int _iX, int _iY, int _iWidth, int _iHeight)
 		return;
 	}
 	GoToXY(_iX, _iY);
-	char a = 205;
+	char a = (char)205;
 
 	for (int i = 0; i < _iWidth; i++)
 	{
@@ -210,37 +206,31 @@ void GeneralDraw::DrawRectangle(int _iX, int _iY, int _iWidth, int _iHeight)
 		std::cout << a;
 	}
 
-	a = 186;
-
 	GoToXY(_iX, _iY + 1);
 	for (int i = 0; i < _iHeight; i++)
 	{
 		GoToXY(_iX, _iY + 1 + i);
-		std::cout << a;
+		std::cout << (char)186;
 	}
 
 	GoToXY(_iX + _iWidth, _iY + 1);
 	for (int i = 0; i < _iHeight; i++)
 	{
 		GoToXY(_iX + _iWidth, _iY + 1+i);
-		std::cout << a;
+		std::cout << (char)186;
 	}
 
-	a = 201;
 	GoToXY(_iX, _iY);
-	std::cout << a;
+	std::cout << (char)201;
 
-	a = 187;
 	GoToXY(_iX + _iWidth, _iY);
-	std::cout << a;
+	std::cout << (char)187;
 
-	a = 200;
 	GoToXY(_iX, _iY + _iHeight);
-	std::cout << a;
+	std::cout << (char)200;
 
-	a = 188;
 	GoToXY(_iX + _iWidth, _iY + _iHeight);
-	std::cout << a;
+	std::cout << (char)188;
 }
 
 int GeneralDraw::GetArenaWidth() { return arenaWidth; }
@@ -267,7 +257,7 @@ void GeneralDraw::DrawCurrentGameStats(int player1wins, int player2wins)
 void GeneralDraw::DrawMeterBox()
 {
 	SetDrawColour(col_white_black);
-	char a = 179;
+	char a = (char)179;
 	for (int i = 0; i < 4;i++)
 	{
 		GoToXY(4, 50 - i);
@@ -290,83 +280,74 @@ void GeneralDraw::DrawMeterBox()
 	GoToXY(55, 48);
 	std::cout << a;
 
-	a = 195;
 	GoToXY(4, 49);
-	std::cout << a;
+	std::cout << (char)195;
 	GoToXY(51, 49);
-	std::cout << a;
+	std::cout << (char)195;
 
-	a = 192;
 	GoToXY(4, 51);
-	std::cout << a;
+	std::cout << (char)192;
 	GoToXY(51, 51);
-	std::cout << a;
+	std::cout << (char)192;
 
-	a = 217;
 	GoToXY(25, 51);
-	std::cout << a;
+	std::cout << (char)217;
 	GoToXY(72, 51);
-	std::cout << a;
+	std::cout << (char)217;
 
-	a = 180;
 	GoToXY(25, 49);
-	std::cout << a;
-	a = 180;
+	std::cout << (char)180;
 	GoToXY(72, 49);
-	std::cout << a;
+	std::cout << (char)180;
 
-	a = 218;
 	GoToXY(4, 46);
-	std::cout << a;
+	std::cout << (char)218;
 	GoToXY(51, 46);
-	std::cout << a;
+	std::cout << (char)218;
 
-	a = 191;
 	GoToXY(25, 46);
-	std::cout << a;
+	std::cout << (char)191;
 	GoToXY(72, 46);
-	std::cout << a;
+	std::cout << (char)191;
 
-	a = 196;
 	for (int i = 0; i < 20;i++)
 	{
 		GoToXY(5 + i, 49);
-		std::cout << a;
+		std::cout << (char)196;
 		GoToXY(52 + i, 49);
-		std::cout << a;
+		std::cout << (char)196;
 		GoToXY(5 + i, 51);
-		std::cout << a;
+		std::cout << (char)196;
 		GoToXY(52 + i, 51);
-		std::cout << a;
+		std::cout << (char)196;
 		GoToXY(5 + i, 46);
-		std::cout << a;
+		std::cout << (char)196;
 		GoToXY(52 + i, 46);
-		std::cout << a;
+		std::cout << (char)196;
 	}
 
 	GoToXY(7, 49);
-	std::cout << "Trail";// Meter";
+	std::cout << "Trail";  //  :) having fun?";
 	GoToXY(65, 49);
 	std::cout << "Trail";
-	a = 193;
+
 	GoToXY(55, 49);
-	std::cout << a;
+	std::cout << (char)193;
 	GoToXY(21, 49);
 	std::cout << a;
-	a = 194;
+
 	GoToXY(21, 46);
-	std::cout << a;
+	std::cout << (char)194;
 	GoToXY(55, 46);
-	std::cout << a;
+	std::cout << (char)194;
 
 	
-	a = 196;
 	for (int i = 0; i < 25;i++)
 	{
 		GoToXY(26+i, 46);
-		std::cout << a;
+		std::cout << (char)196;
 		GoToXY(26 + i, 51);
-		std::cout << a;
+		std::cout << (char)196;
 	}
 	GeneralDraw::SetDrawColour(col_yellow_black);
 	GoToXY(28, 46);
@@ -388,7 +369,7 @@ void GeneralDraw::DrawTrailMeters(int p1trail, int p2trail)
 	}
 
 	SetDrawColour(col_red_black);
-	char c = 219;
+	char c = (char)219;
 	for (int j = 0; j < p1trail; j++)
 	{
 		GoToXY(5 + j, 50);
