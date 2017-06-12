@@ -334,7 +334,7 @@ void GeneralDraw::DrawMeterBox()
 	GoToXY(55, 49);
 	std::cout << (char)193;
 	GoToXY(21, 49);
-	std::cout << a;
+	std::cout << (char)193;
 
 	GoToXY(21, 46);
 	std::cout << (char)194;

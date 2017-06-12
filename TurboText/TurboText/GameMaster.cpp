@@ -90,7 +90,7 @@ void GameMaster::PlayGame()
 		}
 
 		GeneralDraw::GoToXY(28, 17);
-		std::cout << "[Press any key to continue]";
+		std::cout << "[Press Enter to continue]";
 
 		//Determine if someone is winner
 		if (p1wins >= 3)
@@ -106,10 +106,19 @@ void GameMaster::PlayGame()
 		}
 
 		//Hang program until players want to continue
-		int temp = _getch();
-		if (temp == 0 || temp == 0xE0) {
-			temp = _getch();
+		while (true)
+		{
+			int temp = _getch();
+			if (temp == 0 || temp == 0xE0) {
+				temp = _getch();
+			}
+
+			if (temp == 13)
+			{
+				break;
+			}
 		}
+		
 
 		//Clean result box
 		GeneralDraw::ClearRectangle(26, 14, 30, 4);
@@ -128,15 +137,24 @@ void GameMaster::GameIntro(int currentRound)
 
 	GeneralDraw::SetDrawColour(ECOLOUR::col_yellow_black);
 	//GeneralDraw::DrawRectangle(30, 10, 16, 6);
-	GeneralDraw::GoToXY(36, 15);
+	GeneralDraw::GoToXY(35, 15);
 	std::cout << "Round: " << currentRound;
 	GeneralDraw::GoToXY(28, 18);
-	std::cout << "Press [Any key] to start";
+	std::cout << "Press [Enter] to start";
 	
-	int temp = _getch();
-	if (temp == 0 || temp == 0xE0) {
-		temp = _getch();
+	while (true) 
+	{
+		int temp = _getch();
+		if (temp == 0 || temp == 0xE0) {
+			temp = _getch();
+		}
+
+		if (temp == 13)
+		{
+			break;
+		}
 	}
+	
 
 	GeneralDraw::ClearRectangle(28, 15, 25, 3);
 	
@@ -312,14 +330,23 @@ void GameMaster::GameEndScreen(int p1wins, int p2wins)
 	std::cout << "Player 2: " << p2wins << " Wins";
 
 	GeneralDraw::SetDrawColour(col_yellow_black);
-	GeneralDraw::GoToXY(26, 24);
-	std::cout << "Press any [key] to continue";
+	GeneralDraw::GoToXY(25, 24);
+	std::cout << "Press any [Enter] to continue";
 
-	int temp = _getch();
+	while (true)
+	{
+		int temp = _getch();
 
-	if (temp == 0 || temp == 0xE0) {
-		temp = _getch();
+		if (temp == 0 || temp == 0xE0) {
+			temp = _getch();
+		}
+
+		if (temp == 13)
+		{
+			break;
+		}
 	}
+	
 }
 
 void GameMaster::GameUserInputs()
